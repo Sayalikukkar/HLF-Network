@@ -149,9 +149,6 @@ infoln "Install chaincode on peer0.org3..."
 installChaincode 3
 infoln "Install chaincode on peer0.org4..."
 installChaincode 4
-infoln "Install chaincode on peer0.org5..."
-installChaincode 5
-
 
 ## query whether the chaincode is installed
 queryInstalled 1
@@ -188,23 +185,14 @@ approveForMyOrg 4
 checkCommitReadiness 1 "\"Org1MSP\": true" "\"Org4MSP\": true"
 checkCommitReadiness 2 "\"Org1MSP\": true" "\"Org4MSP\": true"
 
-## now approve also for org5
-approveForMyOrg 5
-
-## check whether the chaincode definition is ready to be committed
-## expect them both to have approved
-checkCommitReadiness 1 "\"Org1MSP\": true" "\"Org5MSP\": true"
-checkCommitReadiness 2 "\"Org1MSP\": true" "\"Org5MSP\": true"
-
 ## now that we know for sure both orgs have approved, commit the definition
-commitChaincodeDefinition 1 5
+commitChaincodeDefinition 1 4
 
 ## query on both orgs to see that the definition committed successfully
 queryCommitted 1
 queryCommitted 2
 queryCommitted 3
 queryCommitted 4
-queryCommitted 5
 
 ## Invoke the chaincode - this does require that the chaincode have the 'initLedger'
 ## method defined
